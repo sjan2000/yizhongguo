@@ -1,0 +1,17 @@
+<app>
+    <name>数据联通日志</name>
+    <description>Jinding Yun Art网上商店系统接口操作日志</description>
+
+    <author>
+        <name>Jinding Yun Art开发团队</name>
+        <email>990024933@qq.com</email>
+    </author>
+
+    <version>1.0</version>
+    <license>Jinding Yun Art license</license>
+    <parent_model_class>dbeav_model</parent_model_class>
+    <optional app="dev">开发者工具</optional>
+    <depends>
+        <app>base</app>
+    </depends>
+</app>

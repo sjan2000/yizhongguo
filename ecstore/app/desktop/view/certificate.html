@@ -1,0 +1,47 @@
+<div class="notice"><{t}><{/t}><br><{t}><{/t}></div>
+
+<div class="tableform">
+<{tabber}>
+    <{tab name=$___desktop="证书下载备份"|t:'desktop'}>
+        <{if $license}>
+        <div class="clear division">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <th><{t}>当前证书:<{/t}></th>
+                <td><{$certi_id}></td>
+              </tr>
+            </table>
+            </div>
+            <div class="table-action">
+				<{assign var=___dc value=$___confirm_delete='如果删除证书，则无法恢复，确定要删除证书吗?'|t:'desktop'}>
+                <{button label=$___desktop="下载证书"|t:'desktop' class="btn-primary"  onclick="window.open('index.php?app=desktop&ctl=certificate&act=download')" type="submit"}>
+                <{button label=$___desktop="删除证书"|t:'desktop' class="btn-secondary" onclick="if (!confirm('{$___confirm_delete}')) return false; else W.page('index.php?app=desktop&ctl=certificate&act=delete');"}>
+			</div>
+
+        <{else}>
+            <div class="notice">
+			<{t}><{/t}>
+            </div>
+        <{/if}>
+    <{/tab}>
+    
+    <{tab name=$___desktop="证书上传恢复"|t:'desktop'}>
+        <form action="index.php?app=desktop&ctl=certificate&act=upLicense" method="POST" enctype="multipart/form-data">
+        <div class="division">
+
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <th><{t}>请选择证书：<{/t}></th>
+            <td><input name="license" type="file"></td>
+          </tr>
+
+        </table>
+        </div>
+
+        <div class="table-action">
+              <{button class="btn-primary" type="submit"  label=$___desktop="上传恢复"|t:'desktop' }>
+          </div>
+        </form>
+    <{/tab}>
+<{/tabber}>
+</div>

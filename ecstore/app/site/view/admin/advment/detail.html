@@ -1,0 +1,119 @@
+<form id="brandForm" action="index.php?app=b2c&ctl=admin_brand&act=save"  method="POST" >
+<div class="tableform">
+  <div class="division">
+  <table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <th><{t}>广告位名称：<{/t}></th>
+    <td><{input type="text" name="adv_position_name" style="width:120px" vtype="required"}><em><font color='red'>*</font></em></td>
+  </tr>
+  <tr>
+    <th><{t}>广告位标识：<{/t}></th>
+    <td><{input type="text" name="adv_position_no" style="width:100px" vtype="required"}><em><font color='red'>*</font></em></td>
+  </tr>
+  <tr>
+    <th><{t}>类型：<{/t}></th>
+    <td>
+      <select name="adv_type">
+        <option class="optionlevels" value="carousel">轮播</option>
+        <option class="optionlevels" value="fixed">固定</option>
+      </select>
+    </td>
+  </tr>
+  <tr>
+    <th><{t}>宽度：<{/t}></th>
+    <td><{input type="text" name="adv_width" style="width:50px" vtype="required"}></td>
+  </tr>
+  <tr>
+    <th><{t}>高度：<{/t}></th>
+    <td><{input type="text" name="adv_height" style="width:50px" vtype="required"}></td>
+  </tr>
+    <tr>
+      <th><{t}>是否启用：<{/t}></th>
+      <td>
+        <input type="radio" name="is_used" value="true"/><{t}>是<{/t}>
+        <input type="radio" name="is_used" value="false"/><{t}>否<{/t}>
+      </td>
+    </tr>
+  </table>
+  </div>
+  <div class="division">
+    <div>
+      <div style="float: left;">广告列表</div>
+      <div style="float: right;">
+        <{button type="button" label=$___b2c="新增"|t:'b2c' onclick="add_sub_advment()" icon="btn_add.gif" app='desktop'}>
+        <{button type="button" label=$___b2c="删除"|t:'b2c' onclick="" icon="del.gif" app='desktop'}>
+      </div>
+    </div>
+  <table width="100%" border="0" cellpadding="0" cellspacing="0" class="gridlist">
+        <thead>
+        <tr>
+          <th style="width:auto;">广告名称</th>
+          <th style="width:4%;">媒体类型</th>
+          <th style="width:20%;">广告文件</th>
+          <th style="width:15%;">开始时间</th>
+          <th style="width:15%;">截至时间</th>
+          <th style="width:8%;">启用状态</th>
+          <th style="width:8%;">编辑</th>
+          <th style="width:8%;">排序</th>
+        </tr>
+        </thead>
+        <tbody id="dataNode">
+        </tbody>
+  </table>
+  </div>
+</div>
+  <div class="table-action">
+	<{button type="submit"  label=$___b2c="保存"|t:'b2c'}>
+  </div>
+</form>
+<script type="text/javascript">
+    function add_sub_advment(){
+
+        new Dialog('index.php?app=site&ctl=admin_advment&act=addSubAdvment_pre',{title:'<{t}>添加广告<{/t}>',
+            onShow:function(){
+
+                this.dialog.store('callback',function(id){
+                    var e = new Element('div');
+                    //injectInside
+                    if(id.adv_sub_name){
+                       new Element('input', {
+                           'name': 'adv_sub_name[][""]',
+                           'text': 'I am a new div',
+                        });
+                    }
+                    /*
+                    var sign_id = false;
+                    $('spec_box').getElements('input[type=hidden]').each(function(item){
+                        if(item.value == id){
+                            sign_id = true;
+                        }
+                    });
+                    if(sign_id) return;
+
+                    $('form_style_spec_header').style.display = '';
+                    if($('form_style_spec_msg_none')) $('form_style_spec_msg_none').style.display = 'none';
+
+                    var js_obj = {'id':id,'name':name};
+                    var obj = tmpl_spec.substitute(js_obj);
+                    var e = new Element('div').setHTML(obj).getFirst();
+                    $E('select',e).selectedIndex=0;
+                    $('spec_box').adopt(e);
+                  */
+                });
+
+            }
+        });
+
+      /*
+        new Dialog(
+
+            {
+                ajaxoptions:{
+                    data:$('dataNode'),
+                    method:'post'
+                }
+            }
+        );
+        */
+    }
+</script>

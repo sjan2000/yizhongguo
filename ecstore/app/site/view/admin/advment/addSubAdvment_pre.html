@@ -1,0 +1,80 @@
+<div class="tableform" id="spec_select">
+<div class="division">
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <th><{t}>广告名称：<{/t}></th>
+    <td><{input type="text" name="adv_sub_name" style="width:120px" vtype="required"}><em><font color='red'>*</font></em></td>
+  </tr>
+  <tr>
+    <th><{t}>开始时间：<{/t}></th>
+    <td><{input type="date" name="start_time" style="width:70px;" vtype="required"}></td>
+  </tr>
+  <tr>
+    <th><{t}>结束时间：<{/t}></th>
+    <td><{input type="date" name="end_time" style="width:70px;" vtype="required"}></td>
+  </tr>
+  <tr>
+    <th><{t}>是否启用：<{/t}></th>
+    <td>
+      <input type="radio" name="is_used" value="true" ><{t}>是<{/t}>
+      <input type="radio" name="is_used" checked="checked" value="false" ><{t}>否<{/t}>
+    </td>
+  </tr>
+  <tr>
+    <th><{t}>广告地址：<{/t}></th>
+    <td><{input type="text" name="link_sub_url" style="width:240px"}></td>
+  </tr>
+
+  <tr>
+    <th>图片：</th>
+    <td>
+      <{input type="image" name="images" width=160 height=90}>请上传广告图片</td>
+  </tr>
+</table>
+</div>
+  <div class="division">
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <th><{t}>广告描述：<{/t}></th>
+        <td><{input type="textarea" class="inputstyle" name="adv_sub_content" style="width:400px; height:200px;"}></td>
+      </tr>
+    </table>
+  </div>
+
+<{area inject='.mainFoot'}>
+<div class="table-action">
+  <{button class='close-btn' label=$___b2c="保存"|t:'b2c'}>
+</div>
+<{/area}>
+
+
+<script>
+    void function(){
+        $E('.close-btn', $('spec_select').getParent('.dialog-box')).addEvent('click',function(){
+            var dialog=this.getParent('.dialog');
+            if(!dialog)return;
+
+            adv_sub_name = $('spec_select').getElement('input[name=adv_sub_name]').getValue();
+            start_time = $('spec_select').getElement('input[name=start_time]').getValue();
+            end_time = $('spec_select').getElement('input[name=end_time]').getValue();
+            is_used = $('spec_select').getElement('input[name=is_used]').getValue();
+            link_sub_url = $('spec_select').getElement('input[name=link_sub_url]').getValue();
+            images = $('spec_select').getElement('input[name=images]').getValue();
+            adv_sub_content = $('spec_select').getElement('input[name=adv_sub_content]').getValue();
+            var id=[];
+            id['adv_sub_name'] = adv_sub_name;
+            id['start_time'] = start_time;
+            id['end_time'] = end_time;
+            id['is_used'] = is_used;
+            id['link_sub_url'] = link_sub_url;
+            id['images'] = images;
+            id['adv_sub_content'] = adv_sub_content;
+
+            dialog.retrieve('callback',$empty)(id);
+            dialog.getElement('.btn-close').fireEvent('click');
+        });
+
+
+    }();
+
+</script>
